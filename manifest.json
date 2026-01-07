@@ -3,9 +3,9 @@
 	"name": "Emo Relation",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "A plugin to help you log and track your emotions within Obsidian Notes.",
+	"author": "Liana Mei",
+	"authorUrl": "https://www.linkedin.com/in/lianapensiero",
+	"fundingUrl": "https://account.venmo.com/u/lianamei",
 	"isDesktopOnly": false
 }
