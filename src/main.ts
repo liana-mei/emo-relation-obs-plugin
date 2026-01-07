@@ -1,5 +1,6 @@
 import {App, Editor, MarkdownView, Modal, Notice, Plugin} from 'obsidian';
 import { LogEmotionModal } from './ui-log-emotion-modal';
+import { DEFAULT_SETTINGS, PluginSettings, EmoRelationSettingsTab } from './settings';
 
 
 // Remember to rename these classes and interfaces!
@@ -34,6 +35,9 @@ export default class EmoRelation extends Plugin {
 				editor.replaceSelection('Sample editor command');
 			}
 		});
+
+		// Add settings tab for plugin settings
+		this.addSettingTab(new EmoRelationSettingsTab(this.app, this));
 
 		// This adds a complex command that can check whether the current state of the app allows execution of the command
 		this.addCommand({

@@ -1,18 +1,24 @@
 import {App, PluginSettingTab, Setting} from "obsidian";
 import MyPlugin from "./main";
+import EmoRelation from "./main";
 
-export interface MyPluginSettings {
+export interface PluginSettings {
 	mySetting: string;
+	emotionLogQuestion: string;
+	notePath: string;
 }
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
-}
+export const DEFAULT_SETTINGS: PluginSettings = {
+	mySetting: 'default',
+	emotionLogQuestion: 'How are you feeling?',
+	notePath: 'DailyNote.md'
+}	;	
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+export class EmoRelationSettingsTab extends PluginSettingTab {
+	plugin: EmoRelation;
+
+	constructor(app: App, plugin: EmoRelation) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -30,6 +36,27 @@ export class SampleSettingTab extends PluginSettingTab {
 				.setValue(this.plugin.settings.mySetting)
 				.onChange(async (value) => {
 					this.plugin.settings.mySetting = value;
+					await this.plugin.saveSettings();
+				}));
+
+		new Setting(containerEl)
+			.setName('Emotion Log Question')
+			.setDesc('Title for the Log Emotion modal')
+			.addText(text => text
+				.setPlaceholder('Emotion Log Question')
+				.setValue(this.plugin.settings.emotionLogQuestion)
+				.onChange(async (value) => {
+					this.plugin.settings.emotionLogQuestion = value;
+					await this.plugin.saveSettings();
+				}));
+		new Setting(containerEl)
+			.setName('Note path')
+			.setDesc('Path to the daily note file')
+			.addText(text => text
+				.setPlaceholder('DailyNote.md')
+				.setValue(this.plugin.settings.notePath)
+				.onChange(async (value) => {
+					this.plugin.settings.notePath = value;
 					await this.plugin.saveSettings();
 				}));
 	}
