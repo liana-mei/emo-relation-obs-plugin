@@ -35,5 +35,5 @@ An obsidian plugin aimed to help you:
 - A GitHub action is preconfigured to automatically lint every commit on all branches.
 
 ## About me
-[Buy Me a Coffee]("https://account.venmo.com/u/lianamei)
+[Buy Me a Coffee](https://account.venmo.com/u/lianamei)
 
