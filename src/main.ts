@@ -21,9 +21,9 @@ export default class EmoRelation extends Plugin {
 		// This adds a simple command that can be triggered anywhere
 		this.addCommand({
 			id: 'open-modal-simple',
-			name: 'Open modal (simple)',
+			name: 'Log your emotion',
 			callback: () => {
-				new SampleModal(this.app).open();
+				new LogEmotionModal(this.app).open();
 			}
 		});
 
