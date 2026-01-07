@@ -37,12 +37,40 @@ export class LogEmotionModal extends Modal {
 		textInput.style.marginRight = '0.5em';
 
 		const logBtn = inputRow.createEl('button', { text: 'Save' });
-		logBtn.onclick = () => {
-			if (textInput.value.trim()) {
-				this.onEmotionLogged(textInput.value.trim());
-				this.close();
-			}
-		};
+        logBtn.onclick = async () => {
+            if (textInput.value.trim()) {
+                const emotion = textInput.value.trim();
+                this.onEmotionLogged(emotion);
+
+                // Get today's date in YYYY-MM-DD format
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const dateStr = `${yyyy}-${mm}-${dd}`;
+
+                const filePath = `2026/${dateStr}.md`;
+                const timeStr = today.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                const entry = `- ${timeStr} — Mood: ${emotion}\n`;
+
+                try {
+                    // Try to read the file, append, or create if missing
+                    let file;
+                    try {
+                        file = await this.app.vault.adapter.read(filePath);
+                        await this.app.vault.adapter.append(filePath, entry);
+                    } catch {
+                        // File doesn't exist, create it
+                        await this.app.vault.adapter.write(filePath, `# ${dateStr}\n${entry}`);
+                    }
+                } catch (err) {
+                    console.error('Failed to log emotion:', err);
+                }
+
+                this.close();
+            }
+        };
 
 
 		// 6x6 grid of emotions (hardcoded)

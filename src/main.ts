@@ -10,8 +10,14 @@ export default class EmoRelation extends Plugin {
 	settings: EmoRelationSettings;
 
 	async onload() {
+		await this.loadSettings();
 		// This creates an icon in the left ribbon.
-		this.addRibbonIcon('stars', 'Log Emotion', (evt: MouseEvent) => {
+		this.addRibbonIcon('star', 'Log Emotion', (evt: MouseEvent) => {
+			// Called when the user clicks the icon.
+			new LogEmotionModal(this.app).open();
+		});
+
+		this.addRibbonIcon('star', 'Log Emotion', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
 			new LogEmotionModal(this.app).open();
 		});
