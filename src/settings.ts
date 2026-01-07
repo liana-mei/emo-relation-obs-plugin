@@ -1,14 +1,13 @@
 import {App, PluginSettingTab, Setting} from "obsidian";
-import MyPlugin from "./main";
 import EmoRelation from "./main";
 
-export interface PluginSettings {
+export interface EmoRelationSettings {
 	mySetting: string;
 	emotionLogQuestion: string;
 	notePath: string;
 }
 
-export const DEFAULT_SETTINGS: PluginSettings = {
+export const DEFAULT_SETTINGS: EmoRelationSettings = {
 	mySetting: 'default',
 	emotionLogQuestion: 'How are you feeling?',
 	notePath: 'DailyNote.md'
