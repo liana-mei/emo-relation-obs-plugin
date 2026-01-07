@@ -49,7 +49,8 @@ export class LogEmotionModal extends Modal {
                 const dd = String(today.getDate()).padStart(2, '0');
                 const dateStr = `${yyyy}-${mm}-${dd}`;
 
-                const filePath = `2026/${dateStr}.md`;
+                // const filePath = `2026/${dateStr}.md`;
+                const filePath = `daily journal 2025/${dateStr}.md`;
                 const timeStr = today.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
                 const entry = `- ${timeStr} — Mood: ${emotion}\n`;
@@ -62,7 +63,7 @@ export class LogEmotionModal extends Modal {
                         await this.app.vault.adapter.append(filePath, entry);
                     } catch {
                         // File doesn't exist, create it
-                        await this.app.vault.adapter.write(filePath, `# ${dateStr}\n${entry}`);
+                        await this.app.vault.adapter.write(filePath, `${entry}`);
                     }
                 } catch (err) {
                     console.error('Failed to log emotion:', err);
