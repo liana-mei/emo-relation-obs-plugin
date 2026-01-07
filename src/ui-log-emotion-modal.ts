@@ -13,6 +13,16 @@ export class LogEmotionModal extends Modal {
 		const { contentEl } = this;
 		contentEl.empty();
 
+
+
+		// Remove horizontal padding, keep only vertical if needed
+		contentEl.style.paddingLeft = '0';
+		contentEl.style.paddingRight = '0';
+		contentEl.style.paddingTop = '0px';
+		contentEl.style.paddingBottom = '0px';
+		// contentEl.style.minWidth = '80vw';
+		contentEl.style.maxWidth = '500px';
+
 		contentEl.createEl('h2', { text: 'Log Emotion' });
 
 
@@ -20,7 +30,7 @@ export class LogEmotionModal extends Modal {
 		const inputRow = contentEl.createDiv();
 		inputRow.style.display = 'flex';
 		inputRow.style.alignItems = 'center';
-		inputRow.style.marginBottom = '1em';
+		inputRow.style.marginBottom = '0.5em';
 
 		const textInput = inputRow.createEl('input', { type: 'text', placeholder: 'How are you feeling?' });
 		textInput.style.flex = '1';
@@ -81,13 +91,16 @@ export class LogEmotionModal extends Modal {
 		grid.style.display = 'grid';
 		grid.style.gridTemplateColumns = 'repeat(6, 1fr)';
 		grid.style.gap = '0.5em';
-		grid.style.marginBottom = '1em';
+		grid.style.marginBottom = '0.1em';
+		grid.style.marginRight = '0.1em';
+		grid.style.padding = '0.1em';
 
 		emotions.forEach((emotion) => {
 			const btn = grid.createEl('button', { text: emotion.label });
 			btn.style.backgroundColor = emotion.bg_color;
 			btn.style.color = emotion.text_color;
 			btn.title = emotion.quadrant;
+			btn.style.padding = '2px 4px';
 			btn.onclick = () => {
 				textInput.value = emotion.label;
 				textInput.focus();
